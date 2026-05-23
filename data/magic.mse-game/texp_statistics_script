@@ -1,0 +1,32 @@
+
+#########################################
+# The Expanse:
+#########################################
+
+texp_card_cmc_on_stack :=
+{
+
+	if contains(card.shape, match: "split")
+	or contains(card.shape, match: "aftermath")
+
+	then max( cmc(card.casting_cost), cmc(card.casting_cost_2) )
+
+	else cmc(card.casting_cost)
+
+}
+
+texp_card_is_financial_statistic :=
+{
+
+	if texp_card_cmc_on_stack() >= 4 
+	then "cmc"
+
+	elif contains( card.casting_cost, match: "X" )
+	#or   texp_maximum_converted_alternate_cost( card.text ) >= 4
+	#or   texp_maximum_converted_additional_cost( card.text, cmc(card.casting_cost) ) >= 4
+	then "mana"
+
+	else ""
+}
+
+#########################################

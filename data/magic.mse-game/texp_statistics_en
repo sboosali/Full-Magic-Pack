@@ -1,0 +1,17 @@
+#########################################
+# The Expanse:
+#########################################
+
+statistics dimension:
+	name: financeable
+	group: cmc
+	group: mana
+
+	description: Whether a card is (possibly) “finance-able”, and how.
+	position hint: 0111
+	numeric: false
+	show empty: false
+	script: if filter_from_statistic() == "Filtered" or trim_from_statistic() then "" else texp_card_is_financial_statistic() 
+#	icon: stats/texp_financeable.png
+
+#########################################
